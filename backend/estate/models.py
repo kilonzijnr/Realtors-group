@@ -31,7 +31,7 @@ class Property(models.Model):
     name = models.CharField(max_length=100)
     description = models.TextField()
     image = models.ImageField(upload_to="property_images/")
-    cost = models.TextField(max_length=100)
+    cost = models.CharField(max_length=100)
     date_created = models.DateField(auto_now_add=True)
     contact_info = models.IntegerField(null=True, default=0)
 
