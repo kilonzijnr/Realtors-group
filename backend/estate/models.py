@@ -40,3 +40,8 @@ class Property(models.Model):
         """
         return self.name
     
+    @property
+    def number_of_properties(self):
+        """[return total number of properties]
+        """
+        return Property.objects.filter(property=self).count()
