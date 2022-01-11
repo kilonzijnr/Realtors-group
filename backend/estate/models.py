@@ -2,26 +2,12 @@ from django.db import models
 
 # Create your models here.
 category_choices = (
-    ("HOUSE", "house"),
-    ("LAND", "land"),
-    ("APARTMENT", "apartment"),
+    ("HOUSE", "House"),
+    ("LAND", "Land"),
+    ("APARTMENT", "Apartment"),
 )
-class PropertyType(models.Model):
-    """[Property type model]
 
-    Args:
-        models ([type]): [Type of property model]
-    """
-    name = models.CharField(max_length=50, choices = category_choices)
-
-    def save_category(self):
-        """
-        class method to save category
-        """
-        self.save()
-    def delete_category(self):
-        self.delete()
-        
+  
 class Property(models.Model):
     """[property class]
 
@@ -32,7 +18,7 @@ class Property(models.Model):
     description = models.TextField()
     image = models.ImageField(upload_to="property_images/")
     cost = models.CharField(max_length=100)
-    property_type = models.ForeignKey(PropertyType, on_delete=models.CASCADE)
+    property_type = models.CharField(max_length=50, choices = category_choices)
     date_created = models.DateField(auto_now_add=True)
     contact_info = models.IntegerField(null=True, default=0)
 
@@ -41,6 +27,11 @@ class Property(models.Model):
         """
         return self.name
     
+    def save_property(self):
+        """
+        class method to save property
+        """
+        self.save()
     @property
     def number_of_properties(self):
         """[return total number of properties]
