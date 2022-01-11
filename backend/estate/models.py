@@ -26,3 +26,10 @@ class Property(models.Model):
     cost = models.TextField(max_length=100)
     date_created = models.DateField(auto_now_add=True)
     contact_info = models.IntegerField(null=True, default=0)
+
+    def __str__(self):
+        """[return a stringified version of the object]
+        """
+        return self.name
+    
+    
