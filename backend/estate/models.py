@@ -13,3 +13,11 @@ class PropertyType(models.Model):
         models ([type]): [Type of property model]
     """
     name = models.CharField(max_length=50, choices = category_choices)
+
+class Property(models.Model):
+    """[property class]
+
+    Args:
+        models ([class]): [Model Class to create property table]]
+    """
+    
