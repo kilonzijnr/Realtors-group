@@ -14,6 +14,9 @@ class PropertyType(models.Model):
     """
     name = models.CharField(max_length=50, choices = category_choices)
 
+    
+
+        
 class Property(models.Model):
     """[property class]
 
@@ -31,5 +34,4 @@ class Property(models.Model):
         """[return a stringified version of the object]
         """
         return self.name
-    
     
