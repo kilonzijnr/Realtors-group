@@ -19,7 +19,8 @@ class PropertyType(models.Model):
         class method to save category
         """
         self.save()
-    
+    def delete_category(self):
+        self.delete()
         
 class Property(models.Model):
     """[property class]
