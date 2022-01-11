@@ -2,6 +2,12 @@ from django.shortcuts import render,redirect
 from .forms import PropertyForm
 from django.contrib.auth.decorators import login_required
 # Create your views here.
+def home(request):
+    """
+    function to render homepage
+    """
+    props = Property.objects.all()
+    return render(request, "home/index.html", props)
 def add_roperty(request):
     """[property functiom]
 
