@@ -20,4 +20,8 @@ class Property(models.Model):
     Args:
         models ([class]): [Model Class to create property table]]
     """
+    name = models.CharField(max_length=100)
+    description = models.TextField()
+    image = models.ImageField(upload_to="property_images/")
+    cost = models.TextField(max_length=100)
     
