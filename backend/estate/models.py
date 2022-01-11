@@ -32,6 +32,7 @@ class Property(models.Model):
     description = models.TextField()
     image = models.ImageField(upload_to="property_images/")
     cost = models.CharField(max_length=100)
+    property_type = models.ForeignKey(PropertyType, on_delete=models.CASCADE)
     date_created = models.DateField(auto_now_add=True)
     contact_info = models.IntegerField(null=True, default=0)
 

@@ -7,8 +7,10 @@
         </title>
     </head>
     <body>
+        <a href="{% url 'add_property' %}">Create new property</a><br><br><hr>
         {% for prop in props %}
         {{prop.name}} 
+        <img src="{{prop.image.url}}" class="img-fluid" alt="">
         {{prop.description}}
         {% endfor %}
     </body>
