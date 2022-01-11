@@ -14,8 +14,12 @@ class PropertyType(models.Model):
     """
     name = models.CharField(max_length=50, choices = category_choices)
 
+    def save_category(self):
+        """
+        class method to save category
+        """
+        self.save()
     
-
         
 class Property(models.Model):
     """[property class]
