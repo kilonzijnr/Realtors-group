@@ -16,7 +16,7 @@ def rate(request, project_id):
             rate.user = user
             rate.project = property
             rate.save()
-        return render(request, 'project.html', locals())
+        return render(request, 'property.html', locals())
     else:
         form = RateForm()
     return render(request, 'rate.html', locals())
