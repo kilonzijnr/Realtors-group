@@ -30,7 +30,7 @@ class Rating(models.Model):
         sum = 0
         ratings = Rating.objects.filter(project=self)
         for rating in ratings:
-            sum += ((rating.rate_design + rating.rate_usability + rating.rate_content)/3)
+            sum += ((rating.rate_price + rating.rate_location + rating.rate_condition)/3)
         if len(ratings) > 0:
             return sum/len(ratings)
         else:
