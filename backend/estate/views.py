@@ -1,6 +1,6 @@
-from django.shortcuts import render,redirect
-from .forms import PropertyForm
-from .models import Property
+from django.shortcuts import render,redirect,get_object_or_404
+from .forms import PropertyForm,CommentsForm
+from .models import Property,Comments
 from django.contrib.auth.decorators import login_required
 from django.views.generic import  DetailView
 # Create your views here.
@@ -31,15 +31,28 @@ def add_roperty(request):
 
 
 def props(request,id):
-    prop = Property.objects.get(id = id)
-    return render(request,'property/property.html',{"prop":prop})
- 
+    props=Property.objects.get(id=id)
+    
+    if request.method=='POST':
+        form=CommentsForm(request.POST)
+        if form.is_valid():
+            
+            props=Property.objects.all()
+            comment=form.save(commit=False)
+            
+            
+            comment.save()
+            return redirect('props',id)
+    else:
+        form=CommentsForm()
+
+    comments= Comments.objects.all()
+
+   
+    return render(request, 'property/property.html', { "props":props ,"form":form,"comments":comments})
+    
 
 
-
-def blogs_comments(request, id):
-    post = BlogPost.objects.get(id = id)
-    return render(request, "blog_comments.html", {'post':post}) 
 
 def blog_comments(request, slug):
     post = BlogPost.objects.filter(slug=slug).first()
@@ -51,3 +64,17 @@ def blog_comments(request, slug):
         comment = Comment(user = user, content = content, blog=post)
         comment.save()
     return render(request, "blog_comments.html", {'post':post, 'comments':comments}) 
+
+
+def add_comment_to_post(request, pk):
+    post = get_object_or_404(Property, pk=pk)
+    if request.method == "POST":
+        form = CommentForm(request.POST)
+        if form.is_valid():
+            comment = form.save(commit=False)
+            comment.post = post
+            comment.save()
+            return redirect('props', pk=post.pk)
+    else:
+        form = CommentForm()
+    return render(request, 'blog/blog_comments.html', {'form': form})

@@ -1,5 +1,5 @@
 from django import forms
-from .models import Property
+from .models import Property,Comments
 
 
 class PropertyForm(forms.ModelForm):
@@ -12,3 +12,8 @@ class PropertyForm(forms.ModelForm):
         model = Property
         fields = "__all__"
 
+class CommentsForm(forms.ModelForm):
+
+    class Meta:
+        model = Comments
+        fields = "__all__"

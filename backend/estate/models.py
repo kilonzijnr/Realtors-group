@@ -39,17 +39,16 @@ class Property(models.Model):
         """
         return Property.objects.filter(property=self).count()
 
+class Comments(models.Model):
+    
+    
+    comment = models.CharField(max_length=60)
 
-class Comment(models.Model):
-    post = models.ForeignKey('Property', on_delete=models.CASCADE, related_name='comments')
-    author = models.CharField(max_length=200)
-    text = models.TextField()
-    created_date = models.DateTimeField(default=timezone.now)
-    approved_comment = models.BooleanField(default=False)
+    @classmethod
+    def display_comments(cls):
+        return cls.objects.all()
 
-    def approve(self):
-        self.approved_comment = True
+    def save_comments(self):
         self.save()
-
     def __str__(self):
-        return self.text
+        return self.comment
