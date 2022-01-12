@@ -24,3 +24,7 @@ def add_roperty(request):
     else:
         form = PropertyForm()
     return render(request, "property/new_property.html", {"form": form})
+
+
+
+
