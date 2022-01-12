@@ -19,3 +19,10 @@ def register(request):
         'form': form
     }
     return render(request, 'register.html', context)
+
+def profile(request):
+    """User Profile functionality"""
+    context = {
+
+    }
+    return render(request, 'profile.html', context)
