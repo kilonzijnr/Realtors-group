@@ -37,3 +37,22 @@ class Property(models.Model):
         """[return total number of properties]
         """
         return Property.objects.filter(property=self).count()
+
+
+
+##blog and comment models
+class Blog(models.Model):
+    id = models.IntegerField(primary_key=True)
+    blog_title = models.CharField(max_length=20)
+    blog = models.TextField()
+ 
+    def __str__(self):
+        return f"Blog: {self.blog_title}"
+ 
+class Comment(models.Model):
+    your_name = models.CharField(max_length=20)
+    comment_text = models.TextField()
+    blog = models.ForeignKey('Blog', on_delete=models.CASCADE)
+     
+    def __str__(self):
+        return f"Comment by Name: {self.your_name}"
