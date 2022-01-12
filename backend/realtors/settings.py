@@ -35,7 +35,6 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     'django.contrib.gis',
     'cities.apps.CitiesConfig',
-    'location',
     'estate',
     'leaflet',
     'django.contrib.admin',
