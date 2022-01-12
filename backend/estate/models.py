@@ -7,3 +7,11 @@ class Rating(models.Model):
     review = models.TextField(null=True)
     rate_property = models.PositiveSmallIntegerField(choices = RATE_CHOICES)
     
+    def no_of_ratings(self):
+        ratings = Rating.objects.filter(project=self)
+        return len(ratings)
+
+    
+
+def __str__(self):
+        return self.user.username
