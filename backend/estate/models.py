@@ -18,7 +18,9 @@ class Rating(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     property = models.ForeignKey(property, on_delete=models.CASCADE)
     review = models.TextField(null=True)
-    rate_property = models.PositiveSmallIntegerField(choices = RATE_CHOICES)
+    rate_price = models.PositiveSmallIntegerField(choices = RATE_CHOICES)
+    rate_location = models.PositiveSmallIntegerField(choices = RATE_CHOICES)
+    rate_condition = models.PositiveSmallIntegerField(choices = RATE_CHOICES)
 
     
     
