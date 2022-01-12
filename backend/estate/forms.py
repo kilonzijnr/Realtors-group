@@ -13,6 +13,13 @@ class CreateUserForm(UserCreationForm):
         fields = ['username', 'email', 'password1', 'password2']
 
 class UserUpdateForm(forms.ModelForm):
+    """User update form"""
     class Meta:
         model = User
         fields = ['username', 'email']
+
+class ProfileUpdateForm(forms.ModelForm):
+    """Profile update form"""
+    class Meta:
+        model = Profile
+        fields = ['phone', 'address', 'image']
