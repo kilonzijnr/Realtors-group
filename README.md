@@ -1,11 +1,16 @@
 # Project-Name
 
-REALTOR
+REALTORS PROPERTY HUB 
 ## Description
+This is a real estate website where the user post property they wish to sell and potential buyers view it.Users can also add comments on the properties posted.
 
 
-
-## contributor
+## contributors
+* Shawn Njonga 
+* Synthia Kageni
+* Victor Kilonzi
+* Georgee Kamakia
+* Patrick Mugambi
 
 ## Technologies Used
 
