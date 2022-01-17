@@ -1,16 +1,14 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
-from .models import Profile,Property
+from .models import Profile,Property,Comments
 
 #create your forms below
 
 class CreateUserForm(UserCreationForm):
-    """User Sign-up Form"""
-    email = forms.EmailField()
-    class Meta:
-        model = User
-        fields = ['username', 'email', 'password1', 'password2']
+	class Meta:
+		model = User
+		fields = ['username', 'email', 'password1', 'password2']
 
 class UserUpdateForm(forms.ModelForm):
     """User update form"""
@@ -32,3 +30,17 @@ class PropertyForm(forms.ModelForm):
     class Meta:
         model = Property
         fields = "__all__"
+
+class CommentsForm(forms.ModelForm):
+
+    class Meta:
+        model = Comments
+        fields = "__all__"
+
+class RegisterForm(UserCreationForm):
+    """Form for registering a new user"""
+    email = forms.EmailField()
+
+    class Meta:
+        model = User
+        fields = ['username', 'email', 'password1', 'password2']

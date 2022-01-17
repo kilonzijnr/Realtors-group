@@ -1,0 +1,101 @@
+{% extends 'base.html' %}
+{% load django_bootstrap5 %}
+{% block content %}
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Home Page</title>
+</head>
+
+<body>
+    <!--Topside-->
+    <h1 style="font-family: 'Calistoga', cursive;color:rgb(0, 0, 0); text-align: center;">THE REALTORS HUB</h1><br><hr>
+    <div class="container">
+        <div class="row mt-4">
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-header bg-info text-white">
+                        Realtors Property Hub
+                    </div>
+                    <div class="card-body">
+                        <marquee behavior="" direction="">
+                            <h3 class="my-4" style="font-family: 'Dancing Script', cursive;">Welcome to THe Realtors Property Hub</h3>
+                        </marquee>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-header bg-info text-white">
+                        Statistics
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <a class="text-decoration-none text-dark" href="staff.html">
+                                    <div class="card my-card shadow text-center p-3">
+                                        <h4>Current User <i class="fas fa-users"></i></h4>
+                                        <h3><small>{{user}}</small></h3>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="col-md-4">
+                                <a class="text-decoration-none text-dark" href="product.html">
+                                    <div class="card my-card shadow text-center p-3">
+                                        <h4>Properties <i class="fas fa-box"></i></h4>
+                                        <h3>{{props.count}}</h3>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="col-md-4">
+                                <a class="text-decoration-none text-dark" href="order.html">
+                                    <div class="card my-card shadow text-center p-3">
+                                        <h4>Inquiries<i class="fas fa-shipping-fast"></i></h4>
+                                        <h3>{{profile.user.count}}</h3>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div><hr>
+    <div class="text-center container" style="padding:100px; background-color: rgba(0, 0, 0, 0.555); max-width: 2000px; backface-visibility: 50%;">
+        <a class="btn btn-lg btn-primary" style="border-radius: 50px;" href="{% url 'add_property' %}">Upload Property</a><br> 
+    </div><hr>
+    <div class="container">
+        <div class="row">
+            {% for prop in props %}
+            <div class="col-md-4">
+                <div class="card mb-4" style="min-height:340px; background-color: #90909096;color: rgb(0, 0, 0);" >
+                    <img src="{{prop.image.url}}" class="card-img-top" alt=""
+                        style="width: 200px; height: 200px; border-radius: 50%">
+                    <div class="card-body">
+                        <h5 class="card-title"> Property: <strong>{{ prop.name }}</strong> <span class="ml-4"></span>
+                        </h5>
+                        <hr>
+                        <h5>Cost: <small class="text-info">{{prop.cost}}</small></h5>
+                        <hr>
+                        <h5>Property Type: <small class="text-info">{{prop.property_type}}</small></h5>
+                        <hr>
+                        <h5>Contact: <small class="text-info">{{prop.contact_info}}</small></h5>
+                        <hr>
+                        <h5>Description: <small>{{prop.description | slice:":30" }}....</small></h5>
+                        <hr>
+                        <br><br>
+                        <a href="" class="btn btn-danger btn-sm ">Delete</a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    
+</body>
+</html>
+{%endblock%}

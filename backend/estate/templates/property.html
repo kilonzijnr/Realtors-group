@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+{% load django_bootstrap5%}
+{% load ratings %}
+
+<div class="container" style="margin-top:-4">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card mb-3">
+                <div class="row no-gutters">
+                    <div class="col-md-5">
+                        <img src="{{ props.image.url }}" class="card-img" alt="..." style="width: 200px; height: 200px; border-radius: 50%">
+                    </div>
+                    <div class="col-md-7">
+                        <div class="card-body">
+                            <h5 class="card-title tt">Property: {{ props.name }}</h5><hr>
+                            <h5>Property Type: {{props.property_type}}</h5><hr>
+                            <h6 class="card-text">Cost: {{props.cost}}</h6><hr>
+                            <h6>Description: {{props.description}}</h6><hr>
+                            <h5 class="text-center">More Images</h5><hr>
+                            {% for comment in comments %}
+                            <p><strong>{{comment.user.username}}</strong> Comment {{comment.comment}}</p>
+
+                       {% endfor %}
+                            <form action="{% url 'props' props.id%}" method="POST" enctype="multipart/form-data">
+            
+                                {% csrf_token%}
+                                <input type="hidden" name="neighbourhood_id" value="{{nhood.id}}"><br><hr>
+                                <h5 class="text-center">Comment on Property</h5>
+                                {% bootstrap_form form layout='inline' %}
+                                <input type="submit" value="Comment" class="bt btn-primary" style="padding:5px;"><br><hr>
+                                <h5 class="text-center">More Images on Property</h5><hr>
+                            <div>
+                                <img src="{{ props.image1.url }}" class="card-img" alt="..." style="width: 200px; height: 200px; border-radius: 50%">
+                                <img src="{{ props.image2.url }}" class="card-img" alt="..." style="width: 200px; height: 200px; border-radius: 50%">
+                                <img src="{{ props.image3.url }}" class="card-img" alt="..." style="width: 200px; height: 200px; border-radius: 50%">
+                            </div>
+                            </body>
+                      
+                            </div><hr>
+                            <div class="ratings">
+                                <h3 class="pt-3 h2 text-center">Rate</h3><hr>
+                                <div class="row">
+                                    <div class="col-sm">
+                                        <h4>View</h4>
+                              {% ratings props %}
+                
+                                    </div>
+                                    <div class="col-sm">
+                                        <h4>Design</h4>
+                                     {% ratings props %}
+                                    </div>
+                                    <div class="col-sm">
+                                        <h4>Affordability</h4>
+                           {% ratings props %}
+                                    </div>
+                                </div>
+                            <div></div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
